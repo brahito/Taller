@@ -10,7 +10,7 @@ public class Main extends PApplet {
 	}
 
 	public void settings() {
-
+		size(1200, 700);
 	}
 
 	public void setup() {
@@ -18,11 +18,12 @@ public class Main extends PApplet {
 	}
 
 	public void draw() {
-		
+		background(255);
+		log.pintar();
 	}
 
 	public void keyPressed() {
-
+		log.tecla();
 	}
 
 }

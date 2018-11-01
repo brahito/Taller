@@ -11,13 +11,19 @@ public class Mundo {
 	private LinkedList<Recursos> fresas;
 	private LinkedList<Bonificador> bonificadores;
 	private int contador, contadorFresas, contadorBonificador, generarBonificador;
+	private Serpiente serpiente;
 
 	public Mundo(PApplet app) {
 		this.app = app;
+		serpiente = new Serpiente(app);
+		serpiente.start();
 	}
 
 	public void pintar() {
-
+		serpiente.pintar();
+	}
+	public void serpienteTecla() {
+		serpiente.mover();
 	}
 
 	public void agregarSegmento() {
