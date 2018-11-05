@@ -27,14 +27,11 @@ public class Serpiente extends Thread {
 		direction = right;
 		x.add(50.0f);
 		y.add(50.0f);
-		for (int i = 1; i < n; i++) {
-			x.add(x.get(0) - i * tam);
-			y.add(y.get(0));
-		}
+		
 	}
 
 	public void pintar() {
-		// serpientes
+		// serpiente
 		crearSerpiente();
 	}
 
