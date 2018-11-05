@@ -10,9 +10,10 @@ public class Main extends PApplet {
 	}
 
 	public void settings() {
-		size(700, 700);
-		smooth();
+
+		size(1200, 700);
 	}
+
 
 	public void setup() {
 		log = new Logica(this);

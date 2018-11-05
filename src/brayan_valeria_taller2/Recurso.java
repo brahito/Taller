@@ -20,8 +20,8 @@ public class Recurso {
 	}
 
 	public void ponerFresa() {
-		x = (int) app.random(app.width - tam);
-		y = (int) app.random(app.height - tam);
+		x = (int) app.random((app.width - tam)-1150,(app.width - tam)-50);
+		y = (int) app.random((app.height - tam)-650,(app.height - tam)-50);
 	}
 
 	public float getX() {

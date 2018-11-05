@@ -11,8 +11,9 @@ public class Cafe extends Bonificador  {
 
 	@Override
 	public void pintar() {
-		// TODO Auto-generated method stub
-		
+		// TODO Auato-generated method stub
+		//siqjmwiqunfiqwunfiduqwniddiuqwnfuwqndqwd
+		//ubwfuhyqbwufybqafyubqwfu
 	}
 
 	@Override
