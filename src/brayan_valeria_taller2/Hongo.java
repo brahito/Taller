@@ -2,7 +2,7 @@ package brayan_valeria_taller2;
 
 import processing.core.PApplet;
 
-public class Hongo extends Bonificador {
+public class Hongo extends Bonificador implements Runnable {
 
 	public Hongo(PApplet app) {
 		super(app);
@@ -23,6 +23,12 @@ public class Hongo extends Bonificador {
 
 	public void mover() {
 
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -23,6 +23,7 @@ public class Logica {
 	}
 
 	public void pintar() {
+<<<<<<< HEAD
 		switch (pantalla) {
 		case 1:
 			app.image(inicio, 0, 0);
@@ -44,6 +45,12 @@ public class Logica {
 			break;
 
 		}
+=======
+
+		app.image(fondo, 0, 0);
+		mundo.pintar();
+		
+>>>>>>> d873e19fad6183b62b82f35ed5363f590c800b2b
 
 	}
 
