@@ -6,7 +6,7 @@ import processing.core.PApplet;
 
 public class Mundo {
 	private PApplet app;
-	private LinkedList<Araña> arañas;
+	private LinkedList<Arana> arañas;
 	private LinkedList<Serpiente> segmentos;
 	private LinkedList<Recursos> fresas;
 	private LinkedList<Bonificador> bonificadores;

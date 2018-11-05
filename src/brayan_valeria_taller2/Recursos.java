@@ -6,13 +6,14 @@ import processing.core.PImage;
 public class Recursos {
 	private PApplet app;
 	private int x, y, nivel;
-	private PImage fresas;
+	private PImage fresa;
 
 	public Recursos(PApplet app) {
 		this.app = app;
+		fresa= app.loadImage("data/fresa.png");
 	}
 
 	public void pintar() {
-
+       app.image(fresa, x, y);
 	}
 }

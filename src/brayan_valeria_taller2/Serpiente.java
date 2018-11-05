@@ -7,17 +7,15 @@ import processing.core.PImage;
 
 public class Serpiente extends Thread {
 	private PApplet app;
-//	private int x, y,nivel;
 //	private PImage cabeza, segmentos;
 	private int up = 1, down = 2, left = 3, right = 4;
 	private int direction;
-	private boolean move = false;
 	private boolean vivo;
 	private int n = 1;
 	private float distance = 20.0f;
-	private int hit = 0;
-	private float appleX, appleY;
+	private float fresaX, fresaY;
 	private ArrayList<Float> x, y;
+	private PImage cabeza, cuerpo;
 
 	public Serpiente(PApplet app) {
 		this.app = app;
@@ -32,22 +30,20 @@ public class Serpiente extends Thread {
 			x.add(x.get(0) - i * distance);
 			y.add(y.get(0));
 		}
-		ponerManzana();
+		ponerFresa();
+		cabeza=app.loadImage("data/headright.png");
+		cuerpo= app.loadImage("data/body.png");
 	}
 
 	public void pintar() {
 
-		// manzanas
+		// Fresas
 
-		crearManzana();
+		crearFresa();
 
 		// serpientes
 		crearSerpiente();
-		for (int i = 0; i < n - 2; i++) {
-			if (PApplet.dist(x.get(i), y.get(i), x.get(n - 1), y.get(n - 1)) < distance) {
-				hit += 1;
-			}
-		}
+		
 	
 	}
 
@@ -55,9 +51,9 @@ public class Serpiente extends Thread {
 		try {
 			while (vivo) {
 				moverSerpiente();
-				if (PApplet.dist(x.get(x.size() - 1), y.get(y.size() - 1), appleX, appleY) < distance) {
+				if (PApplet.dist(x.get(x.size() - 1), y.get(y.size() - 1), fresaX, fresaY) < distance) {
 					agregarCola();
-					ponerManzana();
+					ponerFresa();
 				}
 				sleep(100);
 			}
@@ -67,20 +63,20 @@ public class Serpiente extends Thread {
 		}
 	}
 
-	void ponerManzana() {
-		appleX = app.random(app.width - distance);
-		appleY = app.random(app.height - distance);
+	void ponerFresa() {
+		fresaX = app.random(app.width - distance);
+		fresaY = app.random(app.height - distance);
 	}
 
 
-	void crearManzana() {
+	void crearFresa() {
 		app.fill(255, 0, 0);
-		app.ellipse(appleX, appleY, distance, distance);
+		app.ellipse(fresaX, fresaY, distance, distance);
 	}
 
 
 	void crearSerpiente() {
-		app.fill(255, 255, 0);
+//		app.fill(255, 255, 0);
 		for (int i = 0; i < n; i++) {
 			float xLocation = x.get(i);
 			float yLocation = y.get(i);
@@ -95,7 +91,15 @@ public class Serpiente extends Thread {
 			if (yLocation <= 0 - distance / 2)
 				y.set(i, (float) (app.height - distance / 2));
 
-			app.ellipse(xLocation, yLocation, distance, distance);
+			//app.ellipse(xLocation, yLocation, distance, distance);
+			
+			if(n==0) {
+				app.image(cabeza, xLocation, yLocation);
+			}
+			if(n>0) {
+				app.image(cuerpo, xLocation, yLocation);
+			}
+			
 		}
 	}
 

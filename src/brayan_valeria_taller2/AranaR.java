@@ -2,8 +2,8 @@ package brayan_valeria_taller2;
 
 import processing.core.PApplet;
 
-public class ArañaA extends Araña {
-	public ArañaA(PApplet app) {
+public class AranaR extends Arana {
+	public AranaR(PApplet app) {
 		super(app);
 	}
 
@@ -14,7 +14,7 @@ public class ArañaA extends Araña {
 
 	@Override
 	public void mover() {
-
+		
 	}
 
 }
