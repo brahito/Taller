@@ -7,15 +7,25 @@ public abstract class Araña extends Thread {
 	protected PApplet app;
 	protected int x, y, nivel;
 	protected PImage araña;
+	protected boolean vivo;
 
 	public Araña(PApplet app) {
 		this.app = app;
+		vivo = true;
 	}
 
 	public abstract void pintar();
 
 	public void run() {
-
+		try {
+			while (vivo) {
+				mover();
+				sleep(50);
+			}
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 //	public boolean validar(Serpiente s) {
@@ -28,4 +38,7 @@ public abstract class Araña extends Thread {
 
 	public abstract void mover();
 
+	public void eliminarAraña() {
+
+	}
 }

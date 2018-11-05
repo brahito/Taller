@@ -12,7 +12,7 @@ public class Logica {
 	}
 
 	public void pintar() {
-
+		mundo.pintar();
 	}
 
 	public void mover() {
@@ -20,7 +20,7 @@ public class Logica {
 	}
 
 	public void tecla() {
-
+		mundo.serpienteTecla();
 	}
 
 }

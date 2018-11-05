@@ -7,29 +7,25 @@ import processing.core.PApplet;
 public class Mundo {
 	private PApplet app;
 	private LinkedList<Araña> arañas;
-	private LinkedList<Serpiente> segmentos;
-	private LinkedList<Recursos> fresas;
+//	private LinkedList<Serpiente> segmentos;
 	private LinkedList<Bonificador> bonificadores;
 	private int contador, contadorFresas, contadorBonificador, generarBonificador;
+	private Serpiente serpiente;
+	private Recurso fresa;
 
 	public Mundo(PApplet app) {
 		this.app = app;
+		fresa = new Recurso(app);
+		bonificadores = new LinkedList<Bonificador>();
+		serpiente = new Serpiente(app, this);
+		serpiente.start();
+		
 	}
 
 	public void pintar() {
-
-	}
-
-	public void agregarSegmento() {
-
-	}
-
-	public void eliminarSegmento() {
-
-	}
-
-	public void eliminarAraña() {
-
+		fresa.pintar();
+		serpiente.pintar();
+		
 	}
 
 	public void generarRecurso() {
@@ -38,5 +34,21 @@ public class Mundo {
 
 	public void generarBonificacion() {
 
+	}
+
+	public Serpiente getSer() {
+		return serpiente;
+	}
+
+	public void serpienteTecla() {
+		serpiente.mover();
+	}
+
+	public Recurso getRecurso() {
+		return fresa;
+	}
+
+	public void setRecurso(Recurso fresa) {
+		this.fresa = fresa;
 	}
 }
