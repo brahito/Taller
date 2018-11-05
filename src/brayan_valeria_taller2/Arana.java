@@ -3,13 +3,13 @@ package brayan_valeria_taller2;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public abstract class Araña extends Thread {
+public abstract class Arana extends Thread {
 	protected PApplet app;
 	protected int x, y, nivel;
 	protected PImage araña;
 	protected boolean vivo;
 
-	public Araña(PApplet app) {
+	public Arana(PApplet app) {
 		this.app = app;
 		vivo = true;
 	}

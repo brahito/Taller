@@ -28,19 +28,33 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
+<<<<<<< HEAD
+  <class id="4" language="java" name="brayan_valeria_taller2.Arana" project="Taller2" 
+    file="/Taller2/src/brayan_valeria_taller2/Arana.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="412" y="851"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+=======
   <class id="4" language="java" name="brayan_valeria_taller2.Araña" project="Taller2" 
     file="/Taller2/src/brayan_valeria_taller2/Araña.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="393" y="913"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+>>>>>>> d873e19fad6183b62b82f35ed5363f590c800b2b
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
+<<<<<<< HEAD
+  <class id="5" language="java" name="brayan_valeria_taller2.AranaR" project="Taller2" 
+    file="/Taller2/src/brayan_valeria_taller2/AranaR.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="336" y="1056"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+=======
   <class id="5" language="java" name="brayan_valeria_taller2.ArañaR" project="Taller2" 
     file="/Taller2/src/brayan_valeria_taller2/ArañaR.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="209" y="1159"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+>>>>>>> d873e19fad6183b62b82f35ed5363f590c800b2b
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -91,10 +105,17 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
+<<<<<<< HEAD
+  <class id="11" language="java" name="brayan_valeria_taller2.AranaA" project="Taller2" 
+    file="/Taller2/src/brayan_valeria_taller2/AranaA.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="462" y="1055"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+=======
   <class id="11" language="java" name="brayan_valeria_taller2.ArañaA" project="Taller2" 
     file="/Taller2/src/brayan_valeria_taller2/ArañaA.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="339" y="1159"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+>>>>>>> d873e19fad6183b62b82f35ed5363f590c800b2b
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -118,6 +139,30 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
+<<<<<<< HEAD
+  <association id="14">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="15" name="mundo">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="16" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="17">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <association id="18">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="19" name="segmentos">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="20" minimum="0" maximum="2147483647">        
+=======
   <class id="14" language="java" name="java.lang.Thread" project="Automatas" 
     file="C:/Program Files/Java/jre1.8.0_181/lib/rt.jar" binary="true" corner="BOTTOM_RIGHT">    
     <position height="54" width="94" x="416" y="1103"/>    
@@ -154,12 +199,53 @@
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="21" minimum="0" maximum="2147483647">        
+>>>>>>> d873e19fad6183b62b82f35ed5363f590c800b2b
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+<<<<<<< HEAD
+  <generalization id="21">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <generalization id="22">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <association id="23">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="24" name="log">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="25" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="26">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="27" name="fresas">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="28" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="29">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="30" name="bonificadores">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="31" minimum="0" maximum="2147483647">        
+=======
   <association id="22">    
     <end type="SOURCE" refId="1" navigable="false">      
       <attribute id="23" name="segmentos">        
@@ -178,12 +264,40 @@
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="27" minimum="0" maximum="1">        
+>>>>>>> d873e19fad6183b62b82f35ed5363f590c800b2b
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+<<<<<<< HEAD
+  <generalization id="32">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <association id="33">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="34" name="arañas">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="35" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="36">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <generalization id="37">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+=======
   <generalization id="28">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="13"/>  
@@ -249,6 +363,7 @@
     <end type="TARGET" refId="13"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+>>>>>>> d873e19fad6183b62b82f35ed5363f590c800b2b
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
     <operations public="true" package="true" protected="true" private="true" static="true"/>  
