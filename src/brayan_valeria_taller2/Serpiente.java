@@ -12,16 +12,16 @@ public class Serpiente extends Thread {
 	private int direction;
 	private boolean vivo;
 	private int n = 1;
-<<<<<<< HEAD
+
 	private float distance = 20.0f;
 	private float fresaX, fresaY;
 	private ArrayList<Float> x, y;
 	private PImage cabeza, cuerpo;
-=======
+
 	private float tam;
-	private ArrayList<Float> x, y;
+
 	private Mundo mundo;
->>>>>>> d873e19fad6183b62b82f35ed5363f590c800b2b
+
 
 	public Serpiente(PApplet app, Mundo mundo) {
 		this.app = app;
@@ -37,54 +37,42 @@ public class Serpiente extends Thread {
 			x.add(x.get(0) - i * tam);
 			y.add(y.get(0));
 		}
-<<<<<<< HEAD
+
 		ponerFresa();
 		cabeza=app.loadImage("data/headright.png");
 		cuerpo= app.loadImage("data/body.png");
 	}
 
-	public void pintar() {
 
-		// Fresas
-
-		crearFresa();
-
-		// serpientes
-		crearSerpiente();
-		
-	
-=======
-	}
 
 	public void pintar() {
 		// serpientes
 		crearSerpiente();
->>>>>>> d873e19fad6183b62b82f35ed5363f590c800b2b
+
 	}
 
 	public void run() {
 		try {
 			while (vivo) {
 				moverSerpiente();
-<<<<<<< HEAD
+
 				if (PApplet.dist(x.get(x.size() - 1), y.get(y.size() - 1), fresaX, fresaY) < distance) {
 					agregarCola();
 					ponerFresa();
-=======
+
 				if (validar(mundo.getRecurso()) == true) {
 					agregarCola();
 					mundo.getRecurso().ponerFresa();
->>>>>>> d873e19fad6183b62b82f35ed5363f590c800b2b
+
 				}
 				sleep(100);
 			}
-		} catch (InterruptedException e) {
+		} }catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-<<<<<<< HEAD
 	void ponerFresa() {
 		fresaX = app.random(app.width - distance);
 		fresaY = app.random(app.height - distance);
@@ -97,8 +85,7 @@ public class Serpiente extends Thread {
 	}
 
 
-=======
->>>>>>> d873e19fad6183b62b82f35ed5363f590c800b2b
+
 	void crearSerpiente() {
 //		app.fill(255, 255, 0);
 		for (int i = 0; i < n; i++) {
@@ -115,7 +102,6 @@ public class Serpiente extends Thread {
 			if (yLocation <= 0 - tam / 2)
 				y.set(i, (float) (app.height - tam / 2));
 
-<<<<<<< HEAD
 			//app.ellipse(xLocation, yLocation, distance, distance);
 			
 			if(n==0) {
@@ -125,7 +111,7 @@ public class Serpiente extends Thread {
 				app.image(cuerpo, xLocation, yLocation);
 			}
 			
-=======
+
 			app.ellipse(xLocation, yLocation, tam, tam);
 		}
 	}
@@ -135,7 +121,7 @@ public class Serpiente extends Thread {
 			return true;
 		} else {
 			return false;
->>>>>>> d873e19fad6183b62b82f35ed5363f590c800b2b
+
 		}
 	}
 
