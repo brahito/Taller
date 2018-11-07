@@ -2,16 +2,20 @@ package brayan_valeria_taller2;
 
 import processing.core.PApplet;
 import processing.core.PImage;
+import processing.core.PVector;
 
-public abstract class Araña extends Thread {
+public abstract class Arana extends Thread {
 	protected PApplet app;
-	protected int x, y, nivel;
-	protected PImage araña;
+	protected int nivel;
+	protected PVector pos;
+	protected PImage arana;
 	protected boolean vivo;
+	protected int tam;
 
-	public Araña(PApplet app) {
+	public Arana(PApplet app) {
 		this.app = app;
 		vivo = true;
+		tam = 40;
 	}
 
 	public abstract void pintar();
@@ -28,13 +32,13 @@ public abstract class Araña extends Thread {
 		}
 	}
 
-//	public boolean validar(Serpiente s) {
-//if() {
-//	return true;
-//}else {
-//	return false;
-//}
-//	}
+	// public boolean validar(Serpiente s) {
+	// if() {
+	// return true;
+	// }else {
+	// return false;
+	// }
+	// }
 
 	public abstract void mover();
 

@@ -7,8 +7,7 @@ import processing.core.PImage;
 
 public class Serpiente extends Thread {
 	private PApplet app;
-//	private int x, y,nivel;
-//	private PImage cabeza, segmentos;
+	private PImage cabeza, segmento;
 	private int up = 1, down = 2, left = 3, right = 4;
 	private int direction;
 	private boolean vivo;
@@ -22,12 +21,14 @@ public class Serpiente extends Thread {
 		this.mundo = mundo;
 		x = new ArrayList<Float>();
 		y = new ArrayList<Float>();
+		cabeza = app.loadImage("data/headdown.png");
+		segmento = app.loadImage("body.png");
 		tam = 20;
 		vivo = true;
 		direction = right;
 		x.add(50.0f);
 		y.add(50.0f);
-		
+
 	}
 
 	public void pintar() {
@@ -52,7 +53,6 @@ public class Serpiente extends Thread {
 	}
 
 	void crearSerpiente() {
-		app.fill(255, 255, 0);
 		for (int i = 0; i < n; i++) {
 			float xLocation = x.get(i);
 			float yLocation = y.get(i);
@@ -66,8 +66,15 @@ public class Serpiente extends Thread {
 				y.set(i, (float) (0.0 + tam / 2));
 			if (yLocation <= 0 - tam / 2)
 				y.set(i, (float) (app.height - tam / 2));
-
-			app.ellipse(xLocation, yLocation, tam, tam);
+			if (i < 1) {
+				app.imageMode(app.CENTER);
+				app.image(cabeza, xLocation, yLocation, tam, tam);
+				app.imageMode(app.CORNER);
+			} else {
+				app.imageMode(app.CENTER);
+				app.image(segmento, xLocation, yLocation, tam, tam);
+				app.imageMode(app.CORNER);
+			}
 		}
 	}
 
@@ -173,9 +180,6 @@ public class Serpiente extends Thread {
 		}
 	}
 
-//	public boolean validar(Fresas f) {
-//		
-//	}
 //	public boolean morder(Arañas a) {
 //		
 //	}

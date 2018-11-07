@@ -1,24 +1,24 @@
 package brayan_valeria_taller2;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 
-public class Dientes extends Bonificador  {
+public class Dientes extends Bonificador {
+	PImage dientes;
 
 	public Dientes(PApplet app) {
 		super(app);
-		// TODO Auto-generated constructor stub
+		dientes = app.loadImage("dientes.png");
 	}
 
 	@Override
 	public void pintar() {
-		// TODO Auto-generated method stub
-		
+		app.image(dientes, x, y);
 	}
 
 	@Override
 	public void accion() {
 		// TODO Auto-generated method stub
-		
 	}
 
 }

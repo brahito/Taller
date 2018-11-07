@@ -6,22 +6,25 @@ import processing.core.PImage;
 public class Recurso {
 	private PApplet app;
 	private float x, y, tam;
+	private PImage fresa;
 
 	public Recurso(PApplet app) {
 		this.app = app;
-
-		tam = 20;
+		fresa = app.loadImage("data/fresa.png");
+		tam = 25;
 		ponerFresa();
 	}
 
 	public void pintar() {
 		app.fill(255, 0, 0);
-		app.ellipse(x, y, tam, tam);
+		app.imageMode(app.CENTER);
+		app.image(fresa, x, y,tam,tam);
+		app.imageMode(app.CORNER);
 	}
 
 	public void ponerFresa() {
-		x = (int) app.random((app.width - tam)-1150,(app.width - tam)-50);
-		y = (int) app.random((app.height - tam)-650,(app.height - tam)-50);
+		x = (int) app.random((app.width - tam) - 1150, (app.width - tam) - 50);
+		y = (int) app.random((app.height - tam) - 650, (app.height - tam) - 50);
 	}
 
 	public float getX() {
