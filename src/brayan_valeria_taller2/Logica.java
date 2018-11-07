@@ -43,7 +43,7 @@ public class Logica {
 			mundo.pintar();
 			app.image(fondo2, 0, 0);
 			break;
-
+			
 		}
 
 	}

@@ -10,7 +10,7 @@ public class Mundo {
 
 	private ArrayList<Arana> aranas;
 	private LinkedList<Bonificador> bonificadores;
-	private int contador, contadorFresas, contadorBonificador, generarBonificador;
+	private int contador, contadorFresas, generarBonificador;
 	private Serpiente serpiente;
 	private Recurso fresa;
 
@@ -22,7 +22,6 @@ public class Mundo {
 		for (int i = 0; i < 3; i++) {
 			aranas.add(new AranaA(app));
 		}
-
 		serpiente = new Serpiente(app, this);
 		serpiente.start();
 
@@ -31,10 +30,32 @@ public class Mundo {
 	public void pintar() {
 		fresa.pintar();
 		serpiente.pintar();
+		generarBonificador++;
 		for (int i = 0; i < aranas.size(); i++) {
 			aranas.get(i).pintar();
 		}
-
+		if (generarBonificador >= 400) {
+			int generar = (int) app.random(1, 5);
+			switch (generar) {
+			case 1:
+				bonificadores.add(new Cafe(app));
+				break;
+			case 2:
+				bonificadores.add(new Hielo(app));
+				break;
+			case 3:
+				bonificadores.add(new Dientes(app));
+				break;
+			case 4:
+				bonificadores.add(new Hongo(app));
+				break;
+			}
+			generarBonificador = 0;
+		}
+		System.out.println(generarBonificador);
+		for (int i = 0; i < bonificadores.size(); i++) {
+			bonificadores.get(i).pintar();
+		}
 	}
 
 	public void generarRecurso() {
@@ -43,6 +64,10 @@ public class Mundo {
 
 	public void generarBonificacion() {
 
+	}
+
+	public LinkedList<Bonificador> getBonificadores() {
+		return bonificadores;
 	}
 
 	public Serpiente getSer() {

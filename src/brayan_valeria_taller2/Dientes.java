@@ -13,12 +13,10 @@ public class Dientes extends Bonificador {
 
 	@Override
 	public void pintar() {
-		app.image(dientes, x, y);
+		app.imageMode(app.CENTER);
+		app.image(dientes, x, y, tam, tam);
+		app.imageMode(app.CORNER);
 	}
 
-	@Override
-	public void accion() {
-		// TODO Auto-generated method stub
-	}
-
+	
 }

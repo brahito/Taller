@@ -7,7 +7,7 @@ import processing.core.PImage;
 
 public class Serpiente extends Thread {
 	private PApplet app;
-	private PImage cabeza, segmento;
+	private PImage cabeza1, cabeza2, cabeza3, cabeza4, segmento;
 	private int up = 1, down = 2, left = 3, right = 4;
 	private int direction;
 	private boolean vivo;
@@ -21,7 +21,10 @@ public class Serpiente extends Thread {
 		this.mundo = mundo;
 		x = new ArrayList<Float>();
 		y = new ArrayList<Float>();
-		cabeza = app.loadImage("data/headdown.png");
+		cabeza1 = app.loadImage("data/headdown.png");
+		cabeza2 = app.loadImage("headup.png");
+		cabeza3 = app.loadImage("headright.png");
+		cabeza4 = app.loadImage("headleft.png");
 		segmento = app.loadImage("body.png");
 		tam = 20;
 		vivo = true;
@@ -43,6 +46,11 @@ public class Serpiente extends Thread {
 				if (validar(mundo.getRecurso()) == true) {
 					agregarCola();
 					mundo.getRecurso().ponerFresa();
+				}
+				for (int i = 0; i < mundo.getBonificadores().size(); i++) {
+					if (validarBonificador(mundo.getBonificadores().get(i)) == true) {
+						mundo.getBonificadores().remove(i);
+					}
 				}
 				sleep(100);
 			}
@@ -66,9 +74,20 @@ public class Serpiente extends Thread {
 				y.set(i, (float) (0.0 + tam / 2));
 			if (yLocation <= 0 - tam / 2)
 				y.set(i, (float) (app.height - tam / 2));
-			if (i < 1) {
+			if (i == x.size() - 1) {
 				app.imageMode(app.CENTER);
-				app.image(cabeza, xLocation, yLocation, tam, tam);
+				if (direction == down) {
+					app.image(cabeza1, xLocation, yLocation, tam, tam);
+				}
+				if (direction == up) {
+					app.image(cabeza2, xLocation, yLocation, tam, tam);
+				}
+				if (direction == right) {
+					app.image(cabeza3, xLocation, yLocation, tam, tam);
+				}
+				if (direction == left) {
+					app.image(cabeza4, xLocation, yLocation, tam, tam);
+				}
 				app.imageMode(app.CORNER);
 			} else {
 				app.imageMode(app.CENTER);
@@ -80,6 +99,14 @@ public class Serpiente extends Thread {
 
 	public boolean validar(Recurso fresa) {
 		if (PApplet.dist(x.get(x.size() - 1), y.get(y.size() - 1), fresa.getX(), fresa.getY()) < tam) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public boolean validarBonificador(Bonificador boni) {
+		if (PApplet.dist(x.get(x.size() - 1), y.get(y.size() - 1), boni.getX(), boni.getY()) < tam) {
 			return true;
 		} else {
 			return false;
@@ -180,9 +207,9 @@ public class Serpiente extends Thread {
 		}
 	}
 
-//	public boolean morder(Arañas a) {
-//		
-//	}
+	// public boolean morder(Arañas a) {
+	//
+	// }
 
 	public ArrayList<Float> getX() {
 		return x;
