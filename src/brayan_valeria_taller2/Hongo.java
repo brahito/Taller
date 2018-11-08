@@ -13,12 +13,10 @@ public class Hongo extends Bonificador implements Runnable {
 
 	@Override
 	public void pintar() {
-		app.image(hongo, x, y);
-	}
 
-	@Override
-	public void accion() {
-		// TODO Auto-generated method stub
+		app.imageMode(app.CENTER);
+		app.image(hongo, x, y, tam, tam);
+		app.imageMode(app.CORNER);
 	}
 
 	public void mover() {

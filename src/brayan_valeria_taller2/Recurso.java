@@ -18,13 +18,13 @@ public class Recurso {
 	public void pintar() {
 		app.fill(255, 0, 0);
 		app.imageMode(app.CENTER);
-		app.image(fresa, x, y,tam,tam);
+		app.image(fresa, x, y, tam, tam);
 		app.imageMode(app.CORNER);
 	}
 
 	public void ponerFresa() {
-		x = (int) app.random((app.width - tam) - 1150, (app.width - tam) - 50);
-		y = (int) app.random((app.height - tam) - 650, (app.height - tam) - 50);
+		x = (int) app.random((app.width - tam) - 1100, (app.width - tam) - 100);
+		y = (int) app.random((app.height - tam) - 600, (app.height - tam) - 100);
 	}
 
 	public float getX() {

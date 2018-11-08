@@ -1,30 +1,38 @@
 package brayan_valeria_taller2;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Serpiente extends Thread {
 	private PApplet app;
-	private PImage cabeza, segmento;
+	private PImage cabeza1, cabeza2, cabeza3, cabeza4, segmento;
 	private int up = 1, down = 2, left = 3, right = 4;
-	private int direction;
-	private boolean vivo;
+	private int direction, contadorHielo, contadorCafe;
+	private boolean vivo, congelado, encafeinado;
 	private int n = 1;
 	private float tam;
-	private ArrayList<Float> x, y;
+	private LinkedList<Float> x, y;
 	private Mundo mundo;
 
 	public Serpiente(PApplet app, Mundo mundo) {
 		this.app = app;
 		this.mundo = mundo;
-		x = new ArrayList<Float>();
-		y = new ArrayList<Float>();
-		cabeza = app.loadImage("data/headdown.png");
+		x = new LinkedList<Float>();
+		y = new LinkedList<Float>();
+		cabeza1 = app.loadImage("data/headdown.png");
+		cabeza2 = app.loadImage("headup.png");
+		cabeza3 = app.loadImage("headright.png");
+		cabeza4 = app.loadImage("headleft.png");
 		segmento = app.loadImage("body.png");
 		tam = 20;
+		contadorHielo = 0;
+		contadorCafe = 0;
 		vivo = true;
+		encafeinado = false;
+		congelado = false;
 		direction = right;
 		x.add(50.0f);
 		y.add(50.0f);
@@ -39,11 +47,50 @@ public class Serpiente extends Thread {
 	public void run() {
 		try {
 			while (vivo) {
-				moverSerpiente();
+				if (congelado == false) {
+					moverSerpiente();
+				}
+				if (congelado == true) {
+					contadorHielo++;
+				}
+				if (contadorHielo == 40) {
+					contadorHielo = 0;
+					congelado = false;
+				}
+				if (encafeinado == true) {
+					tam = 30;
+					contadorCafe++;
+				} else {
+					tam = 20;
+				}
+				if (contadorCafe == 100) {
+					contadorCafe = 0;
+					encafeinado = false;
+				}
 				if (validar(mundo.getRecurso()) == true) {
 					agregarCola();
 					mundo.getRecurso().ponerFresa();
 				}
+				for (int i = 0; i < mundo.getBonificadores().size(); i++) {
+					if (validarBonificador(mundo.getBonificadores().get(i)) == true) {
+						if (mundo.getBonificadores().get(i) instanceof Hongo) {
+							quitarColaMitad();
+						}
+						if (mundo.getBonificadores().get(i) instanceof Hielo) {
+							congelado = true;
+						}
+						if (mundo.getBonificadores().get(i) instanceof Cafe) {
+							encafeinado = true;
+						}
+						if (mundo.getBonificadores().get(i) instanceof Dientes) {
+
+						}
+						mundo.getBonificadores().remove(i);
+
+					}
+
+				}
+
 				sleep(100);
 			}
 		} catch (InterruptedException e) {
@@ -66,9 +113,21 @@ public class Serpiente extends Thread {
 				y.set(i, (float) (0.0 + tam / 2));
 			if (yLocation <= 0 - tam / 2)
 				y.set(i, (float) (app.height - tam / 2));
-			if (i < 1) {
+
+			if (i == x.size() - 1) {
 				app.imageMode(app.CENTER);
-				app.image(cabeza, xLocation, yLocation, tam, tam);
+				if (direction == down) {
+					app.image(cabeza1, xLocation, yLocation, tam, tam);
+				}
+				if (direction == up) {
+					app.image(cabeza2, xLocation, yLocation, tam, tam);
+				}
+				if (direction == right) {
+					app.image(cabeza3, xLocation, yLocation, tam, tam);
+				}
+				if (direction == left) {
+					app.image(cabeza4, xLocation, yLocation, tam, tam);
+				}
 				app.imageMode(app.CORNER);
 			} else {
 				app.imageMode(app.CENTER);
@@ -80,6 +139,15 @@ public class Serpiente extends Thread {
 
 	public boolean validar(Recurso fresa) {
 		if (PApplet.dist(x.get(x.size() - 1), y.get(y.size() - 1), fresa.getX(), fresa.getY()) < tam) {
+			return true;
+		} else {
+			return false;
+
+		}
+	}
+
+	public boolean validarBonificador(Bonificador boni) {
+		if (PApplet.dist(x.get(x.size() - 1), y.get(y.size() - 1), boni.getX(), boni.getY()) < tam) {
 			return true;
 		} else {
 			return false;
@@ -145,50 +213,44 @@ public class Serpiente extends Thread {
 		}
 	}
 
-	public void mover() {
-		if (direction == right) {
-			if (app.key == 'w')
-				direction = up;
-			if (app.key == 's')
-				direction = down;
-			if (app.key == 'd')
-				direction = right;
-		}
-		if (direction == left) {
-			if (app.key == 'w')
-				direction = up;
-			if (app.key == 's')
-				direction = down;
-			if (app.key == 'a')
-				direction = left;
-		}
-		if (direction == up) {
-			if (app.key == 'w')
-				direction = up;
-			if (app.key == 'a')
-				direction = left;
-			if (app.key == 'd')
-				direction = right;
-		}
-		if (direction == down) {
-			if (app.key == 's')
-				direction = down;
-			if (app.key == 'a')
-				direction = left;
-			if (app.key == 'd')
-				direction = right;
+	public void quitarCola() {
+		if (x.size() >= 2) {
+			n -= 1;
+			x.remove(0);
+			y.remove(0);
+			n = x.size();
 		}
 	}
 
-//	public boolean morder(Arañas a) {
-//		
-//	}
+	public void quitarColaMitad() {
+		if (x.size() >= 2) {
+			n -= 1;
+			for (int i = 0; i < x.size() / 2; i++) {
+				for (int j = 0; j < y.size() / 2; j++) {
+					x.remove(i);
+					y.remove(j);
+					n = x.size();
+				}
+			}
+		}
+	}
 
-	public ArrayList<Float> getX() {
+	public void mover() {
+		if (app.keyCode == app.UP)
+			direction = up;
+		if (app.keyCode == app.DOWN)
+			direction = down;
+		if (app.keyCode == app.LEFT)
+			direction = left;
+		if (app.keyCode == app.RIGHT)
+			direction = right;
+	}
+
+	public LinkedList<Float> getX() {
 		return x;
 	}
 
-	public ArrayList<Float> getY() {
+	public LinkedList<Float> getY() {
 		return y;
 	}
 

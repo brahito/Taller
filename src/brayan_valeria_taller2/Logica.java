@@ -19,7 +19,7 @@ public class Logica {
 		irInstruc = app.loadImage("data/irInstrucc.png");
 		instrucc = app.loadImage("data/instrucciones.png");
 		juego = app.loadImage("data/juego.png");
-		pantalla = 1;
+		pantalla = 3;
 	}
 
 	public void pintar() {
