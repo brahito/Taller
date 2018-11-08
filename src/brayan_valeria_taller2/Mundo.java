@@ -6,8 +6,14 @@ import processing.core.PApplet;
 
 public class Mundo {
 	private PApplet app;
-	private LinkedList<Araña> arañas;
+
+	private LinkedList<Arana> aranas;
+	private LinkedList<Serpiente> segmentos;
+	private LinkedList<Recurso> fresas;
+
+	private LinkedList<Arana> arañas;
 //	private LinkedList<Serpiente> segmentos;
+
 	private LinkedList<Bonificador> bonificadores;
 	private int contador, contadorFresas, contadorBonificador, generarBonificador;
 	private Serpiente serpiente;
@@ -25,7 +31,7 @@ public class Mundo {
 	public void pintar() {
 		fresa.pintar();
 		serpiente.pintar();
-		
+
 	}
 
 	public void generarRecurso() {

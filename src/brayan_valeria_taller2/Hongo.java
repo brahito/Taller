@@ -1,24 +1,24 @@
 package brayan_valeria_taller2;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public class Hongo extends Bonificador implements Runnable {
+	private PImage hongo;
 
 	public Hongo(PApplet app) {
 		super(app);
-		// TODO Auto-generated constructor stub
+		hongo = app.loadImage("hongo.png");
 	}
 
 	@Override
 	public void pintar() {
-		// TODO Auto-generated method stub
-
+		app.image(hongo, x, y);
 	}
 
 	@Override
 	public void accion() {
 		// TODO Auto-generated method stub
-
 	}
 
 	public void mover() {
@@ -28,7 +28,7 @@ public class Hongo extends Bonificador implements Runnable {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

@@ -14,7 +14,6 @@ public class Main extends PApplet {
 		size(1200, 700);
 	}
 
-
 	public void setup() {
 		log = new Logica(this);
 	}
@@ -26,6 +25,10 @@ public class Main extends PApplet {
 
 	public void keyPressed() {
 		log.tecla();
+	}
+
+	public void mousePressed() {
+		log.mouse();
 	}
 
 }
