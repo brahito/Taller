@@ -20,10 +20,14 @@ public class Mundo {
 		aranas = new ArrayList<Arana>();
 		bonificadores = new LinkedList<Bonificador>();
 		for (int i = 0; i < 3; i++) {
-			aranas.add(new AranaA(app));
+			Arana a = new AranaA(app, this);
+			aranas.add(a);
+			a.start();
 		}
 		for (int i = 0; i < 3; i++) {
-			aranas.add(new AranaR(app));
+			Arana a = new AranaR(app, this);
+			aranas.add(a);
+			a.start();
 		}
 		serpiente = new Serpiente(app, this);
 		serpiente.start();
@@ -83,6 +87,10 @@ public class Mundo {
 
 	public Recurso getRecurso() {
 		return fresa;
+	}
+
+	public ArrayList<Arana> getAranas() {
+		return aranas;
 	}
 
 	public void setRecurso(Recurso fresa) {

@@ -28,4 +28,8 @@ public abstract class Bonificador {
 		return y;
 	}
 
+	public int getTam() {
+		return tam;
+	}
+
 }

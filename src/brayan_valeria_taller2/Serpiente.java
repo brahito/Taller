@@ -13,7 +13,7 @@ public class Serpiente extends Thread {
 	private int direction, contadorHielo, contadorCafe;
 	private boolean vivo, congelado, encafeinado;
 	private int n = 1;
-	private float tam;
+	private float tam, xLocation, yLocation;
 	private LinkedList<Float> x, y;
 	private Mundo mundo;
 
@@ -90,6 +90,13 @@ public class Serpiente extends Thread {
 					}
 
 				}
+				for (int i = 0; i < mundo.getAranas().size(); i++) {
+					if (validarArana(mundo.getAranas().get(i)) == true && n > mundo.getAranas().get(i).getFresas()
+							&& mundo.getAranas().get(i).getFresas() >= 1) {
+						mundo.getAranas().get(i).quitarFresa();
+						agregarCola();
+					}
+				}
 
 				sleep(100);
 			}
@@ -101,8 +108,8 @@ public class Serpiente extends Thread {
 
 	void crearSerpiente() {
 		for (int i = 0; i < n; i++) {
-			float xLocation = x.get(i);
-			float yLocation = y.get(i);
+			xLocation = x.get(i);
+			yLocation = y.get(i);
 
 			if (xLocation > app.width + tam / 2)
 				x.set(i, (float) (0.0 + tam / 2));
@@ -148,6 +155,14 @@ public class Serpiente extends Thread {
 
 	public boolean validarBonificador(Bonificador boni) {
 		if (PApplet.dist(x.get(x.size() - 1), y.get(y.size() - 1), boni.getX(), boni.getY()) < tam) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public boolean validarArana(Arana a) {
+		if (PApplet.dist(x.get(x.size() - 1), y.get(y.size() - 1), a.getPos().x, a.getPos().y) < tam) {
 			return true;
 		} else {
 			return false;
@@ -248,6 +263,18 @@ public class Serpiente extends Thread {
 
 	public LinkedList<Float> getX() {
 		return x;
+	}
+
+	public float getxLocation() {
+		return xLocation;
+	}
+
+	public float getyLocation() {
+		return yLocation;
+	}
+
+	public float getTam() {
+		return tam;
 	}
 
 	public LinkedList<Float> getY() {
