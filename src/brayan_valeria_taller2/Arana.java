@@ -11,14 +11,15 @@ public abstract class Arana extends Thread {
 	protected PImage arana;
 	protected int fresas;
 	protected float max;
-	protected boolean vivo, congelado, encafeinado;
-	protected int tam, contadorHielo, contadorCafe, ran;
+	protected boolean vivo, congelado, encafeinado, dientes;
+	protected int tam, contadorHielo, contadorCafe, ran, contadorDientes;
 	protected Mundo mundo;
 
 	public Arana(PApplet app, Mundo mundo) {
 		this.app = app;
 		this.mundo = mundo;
 		contadorHielo = 0;
+		dientes = false;
 		vivo = true;
 	}
 
@@ -49,6 +50,13 @@ public abstract class Arana extends Thread {
 					contadorCafe = 0;
 					encafeinado = false;
 				}
+				if (dientes == true) {
+					contadorDientes++;
+				}
+				if (contadorDientes == 50) {
+					contadorDientes = 0;
+					dientes = false;
+				}
 				if (validar(mundo.getRecurso()) == true) {
 					mundo.getRecurso().ponerFresa();
 					fresas++;
@@ -67,16 +75,13 @@ public abstract class Arana extends Thread {
 							encafeinado = true;
 						}
 						if (mundo.getBonificadores().get(i) instanceof Dientes) {
-
+							dientes = true;
 						}
 						mundo.getBonificadores().remove(i);
-
 					}
 
 				}
-//				if (validarSerpiente(mundo.getSer()) == true) {
-//					mundo.getSer().quitarCola();
-//				}
+			
 				sleep(50);
 			}
 		} catch (InterruptedException e) {
@@ -87,6 +92,10 @@ public abstract class Arana extends Thread {
 
 	public void quitarFresa() {
 		fresas--;
+	}
+
+	public void quitarTodo() {
+		fresas -= fresas;
 	}
 
 	public boolean validar(Recurso fresa) {
@@ -106,16 +115,17 @@ public abstract class Arana extends Thread {
 		}
 	}
 
-//	public boolean validarSerpiente(Serpiente s) {
-//
-//		if (PApplet.dist(pos.x, pos.y, s.getX().get(s.getX().size()), s.getY().get(s.getY().size())) < s.getTam()) {
-//			return true;
-//		} else {
-//			return false;
-//
-//		}
-//
-//	}
+	// public boolean validarSerpiente(Serpiente s) {
+	//
+	// if (PApplet.dist(pos.x, pos.y, s.getX().size() - 1, s.getY().size() - 1) <
+	// s.getTam()) {
+	// return true;
+	// } else {
+	// return false;
+	//
+	// }
+	//
+	// }
 
 	public PVector getPos() {
 		return pos;

@@ -10,10 +10,10 @@ public class Serpiente extends Thread {
 	private PApplet app;
 	private PImage cabeza1, cabeza2, cabeza3, cabeza4, segmento;
 	private int up = 1, down = 2, left = 3, right = 4;
-	private int direction, contadorHielo, contadorCafe;
-	private boolean vivo, congelado, encafeinado;
+	private int direction, contadorHielo, contadorCafe, contadorDientes;
+	private boolean vivo, congelado, encafeinado, dientes;
 	private int n = 1;
-	private float tam, xLocation, yLocation;
+	private float tam;
 	private LinkedList<Float> x, y;
 	private Mundo mundo;
 
@@ -30,9 +30,11 @@ public class Serpiente extends Thread {
 		tam = 20;
 		contadorHielo = 0;
 		contadorCafe = 0;
+		contadorDientes = 0;
 		vivo = true;
 		encafeinado = false;
 		congelado = false;
+		dientes = false;
 		direction = right;
 		x.add(50.0f);
 		y.add(50.0f);
@@ -63,9 +65,17 @@ public class Serpiente extends Thread {
 				} else {
 					tam = 20;
 				}
+
 				if (contadorCafe == 100) {
 					contadorCafe = 0;
 					encafeinado = false;
+				}
+				if (dientes == true) {
+					contadorDientes++;
+				}
+				if (contadorDientes == 50) {
+					contadorDientes = 0;
+					dientes = false;
 				}
 				if (validar(mundo.getRecurso()) == true) {
 					agregarCola();
@@ -83,18 +93,22 @@ public class Serpiente extends Thread {
 							encafeinado = true;
 						}
 						if (mundo.getBonificadores().get(i) instanceof Dientes) {
-
+							dientes = true;
 						}
 						mundo.getBonificadores().remove(i);
 
 					}
-
 				}
 				for (int i = 0; i < mundo.getAranas().size(); i++) {
 					if (validarArana(mundo.getAranas().get(i)) == true && n > mundo.getAranas().get(i).getFresas()
 							&& mundo.getAranas().get(i).getFresas() >= 1) {
 						mundo.getAranas().get(i).quitarFresa();
 						agregarCola();
+					}
+					if (validarArana(mundo.getAranas().get(i)) == true && n > mundo.getAranas().get(i).getFresas()
+							&& mundo.getAranas().get(i).getFresas() >= 1 && dientes == true) {
+						agregarColaRobo(mundo.getAranas().get(i));
+						mundo.getAranas().get(i).quitarTodo();
 					}
 				}
 
@@ -108,8 +122,8 @@ public class Serpiente extends Thread {
 
 	void crearSerpiente() {
 		for (int i = 0; i < n; i++) {
-			xLocation = x.get(i);
-			yLocation = y.get(i);
+			float xLocation = x.get(i);
+			float yLocation = y.get(i);
 
 			if (xLocation > app.width + tam / 2)
 				x.set(i, (float) (0.0 + tam / 2));
@@ -228,6 +242,36 @@ public class Serpiente extends Thread {
 		}
 	}
 
+	void agregarColaRobo(Arana a) {
+		n += 1;
+
+		switch (direction) {
+		case 1:
+			x.add(a.getFresas(), x.get(x.size() - 1));
+			y.add(a.getFresas(), y.get(y.size() - 1) - tam);
+			n = x.size();
+			break;
+
+		case 2:
+			x.add(a.getFresas(), x.get(x.size() - 1));
+			y.add(a.getFresas(), y.get(y.size() - 1) + tam);
+			n = x.size();
+			break;
+
+		case 3:
+			x.add(a.getFresas(), x.get(x.size() - 1) - tam);
+			y.add(a.getFresas(), y.get(y.size() - 1));
+			n = x.size();
+			break;
+
+		case 4:
+			x.add(a.getFresas(), x.get(x.size() - 1) + tam);
+			y.add(a.getFresas(), y.get(y.size() - 1));
+			n = x.size();
+			break;
+		}
+	}
+
 	public void quitarCola() {
 		if (x.size() >= 2) {
 			n -= 1;
@@ -263,14 +307,6 @@ public class Serpiente extends Thread {
 
 	public LinkedList<Float> getX() {
 		return x;
-	}
-
-	public float getxLocation() {
-		return xLocation;
-	}
-
-	public float getyLocation() {
-		return yLocation;
 	}
 
 	public float getTam() {
