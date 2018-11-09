@@ -309,6 +309,10 @@ public class Serpiente extends Thread {
 		return x;
 	}
 
+	public int getN() {
+		return n;
+	}
+
 	public float getTam() {
 		return tam;
 	}

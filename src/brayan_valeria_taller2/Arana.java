@@ -81,7 +81,10 @@ public abstract class Arana extends Thread {
 					}
 
 				}
-			
+				if (validarSerpiente(mundo.getSer()) && fresas > mundo.getSer().getN()) {
+					mundo.getSer().quitarCola();
+					fresas++;
+				}
 				sleep(50);
 			}
 		} catch (InterruptedException e) {
@@ -115,17 +118,15 @@ public abstract class Arana extends Thread {
 		}
 	}
 
-	// public boolean validarSerpiente(Serpiente s) {
-	//
-	// if (PApplet.dist(pos.x, pos.y, s.getX().size() - 1, s.getY().size() - 1) <
-	// s.getTam()) {
-	// return true;
-	// } else {
-	// return false;
-	//
-	// }
-	//
-	// }
+	public boolean validarSerpiente(Serpiente s) {
+
+		if (PApplet.dist(pos.x, pos.y, s.getX().get(s.getX().size() - 1), s.getY().get(s.getY().size() - 1)) < s
+				.getTam()) {
+			return true;
+		}
+		return false;
+
+	}
 
 	public PVector getPos() {
 		return pos;
