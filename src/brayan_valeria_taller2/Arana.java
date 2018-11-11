@@ -29,7 +29,14 @@ public abstract class Arana extends Thread {
 		try {
 			while (vivo) {
 				if (congelado == false) {
-					mover(mundo.getRecurso());
+					if (validarPerseguirSerpiente(mundo.getSer()) == true && fresas > mundo.getSer().getN()) {
+						perseguirSerpiente(mundo.getSer());
+					} else if (validarPerseguirSerpiente(mundo.getSer()) == true && fresas < mundo.getSer().getN()) {
+						huirSerpiente(mundo.getSer());
+					} else {
+						mover(mundo.getRecurso());
+					}
+
 				}
 				if (congelado == true) {
 					contadorHielo++;
@@ -81,9 +88,14 @@ public abstract class Arana extends Thread {
 					}
 
 				}
-				if (validarSerpiente(mundo.getSer()) && fresas > mundo.getSer().getN()) {
+				if (validarSerpiente(mundo.getSer()) && fresas > mundo.getSer().getN() && mundo.getSer().getN() >= 1) {
 					mundo.getSer().quitarCola();
 					fresas++;
+				}
+				if (validarSerpiente(mundo.getSer()) && fresas > mundo.getSer().getN() && mundo.getSer().getN() >= 1
+						&& dientes == true) {
+					mundo.getSer().quitarColaTodas();
+					fresas += mundo.getSer().getN();
 				}
 				sleep(50);
 			}
@@ -92,6 +104,10 @@ public abstract class Arana extends Thread {
 			e.printStackTrace();
 		}
 	}
+
+	public abstract void perseguirSerpiente(Serpiente s);
+
+	public abstract void huirSerpiente(Serpiente s);
 
 	public void quitarFresa() {
 		fresas--;
@@ -103,6 +119,15 @@ public abstract class Arana extends Thread {
 
 	public boolean validar(Recurso fresa) {
 		if (PApplet.dist(pos.x, pos.y, fresa.getX(), fresa.getY()) < fresa.getTam()) {
+			return true;
+		} else {
+			return false;
+
+		}
+	}
+
+	public boolean validar(Bonificador b) {
+		if (PApplet.dist(pos.x, pos.y, b.getX(), b.getY()) < b.getTam()) {
 			return true;
 		} else {
 			return false;
@@ -122,6 +147,16 @@ public abstract class Arana extends Thread {
 
 		if (PApplet.dist(pos.x, pos.y, s.getX().get(s.getX().size() - 1), s.getY().get(s.getY().size() - 1)) < s
 				.getTam()) {
+			return true;
+		}
+		return false;
+
+	}
+
+	public boolean validarPerseguirSerpiente(Serpiente s) {
+
+		if (PApplet.dist(pos.x, pos.y, s.getX().get(s.getX().size() - 1),
+				s.getY().get(s.getY().size() - 1)) < s.getTam() * 8) {
 			return true;
 		}
 		return false;

@@ -35,4 +35,28 @@ public class AranaA extends Arana {
 
 	}
 
+	@Override
+	public void perseguirSerpiente(Serpiente s) {
+		PVector seguir = new PVector(s.getX().get(s.getX().size() - 1), s.getY().get(s.getY().size() - 1));
+		PVector dir = PVector.sub(seguir, pos);
+		dir.normalize();
+		dir.mult((float) 0.5);
+		ace = dir;
+		vel.add(ace);
+		vel.limit(max);
+		pos.add(vel);
+	}
+
+	@Override
+	public void huirSerpiente(Serpiente s) {
+		PVector seguir = new PVector(s.getX().get(s.getX().size() - 1) * -1, s.getY().get(s.getY().size() - 1) * -1);
+		PVector dir = PVector.sub(seguir, pos);
+		dir.normalize();
+		dir.mult((float) 0.5);
+		ace = dir;
+		vel.add(ace);
+		vel.limit(max);
+		pos.add(vel);
+	}
+
 }

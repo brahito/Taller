@@ -12,6 +12,7 @@ public class Logica {
 	public Logica(PApplet app) {
 		this.app = app;
 		mundo = new Mundo(app);
+		// carga de imagenes de interfaz
 		fondo1 = app.loadImage("data/fondo arena.png");
 		fondo2 = app.loadImage("data/fondo bosque.png");
 		inicio = app.loadImage("data/inicio.jpg");

@@ -294,6 +294,19 @@ public class Serpiente extends Thread {
 		}
 	}
 
+	public void quitarColaTodas() {
+		if (x.size() > 1) {
+			n -= 1;
+			for (int i = 0; i < x.size(); i++) {
+				for (int j = 0; j < y.size(); j++) {
+					x.remove(i);
+					y.remove(j);
+					n = x.size();
+				}
+			}
+		}
+	}
+
 	public void mover() {
 		if (app.keyCode == app.UP)
 			direction = up;
@@ -303,6 +316,7 @@ public class Serpiente extends Thread {
 			direction = left;
 		if (app.keyCode == app.RIGHT)
 			direction = right;
+
 	}
 
 	public LinkedList<Float> getX() {
